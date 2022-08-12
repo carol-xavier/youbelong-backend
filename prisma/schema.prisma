@@ -1,0 +1,75 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Donor {
+  id                 Int                  @id @default(autoincrement())
+  name               String
+  email              String               @unique
+  password           String
+  createdAt          DateTime             @default(now())
+  donorsInstitutions DonorsInstitutions[]
+
+  @@map("donors")
+}
+
+model Institution {
+  id                  Int                   @id @default(autoincrement())
+  name                String
+  description         String
+  values              String?
+  mission             String?
+  picture             String?
+  video               String?
+  categoryId          Int
+  createdAt           DateTime              @default(now())
+  category            InstitutionCategory   @relation(fields: [categoryId], references: [id])
+  donorsInstitutions  DonorsInstitutions[]
+  InstitutionArticles InstitutionArticles[]
+
+  @@map("institutions")
+}
+
+model InstitutionCategory {
+  id          Int           @id @default(autoincrement())
+  name        String        @unique
+  Institution Institution[]
+
+  @@map("institutionCategories")
+}
+
+model DonorsInstitutions {
+  id            Int         @id @default(autoincrement())
+  donorId       Int
+  donor         Donor       @relation(fields: [donorId], references: [id])
+  institutionId Int
+  institution   Institution @relation(fields: [institutionId], references: [id])
+
+  @@map("donorsInstitutions")
+}
+
+model Article {
+  id                  Int                   @id @default(autoincrement())
+  name                String                @unique
+  InstitutionArticles InstitutionArticles[]
+
+  @@map("articles")
+}
+
+model InstitutionArticles {
+  id            Int         @id @default(autoincrement())
+  institutionId Int
+  institution   Institution @relation(fields: [institutionId], references: [id])
+  articleId     Int
+  article       Article     @relation(fields: [articleId], references: [id])
+
+  @@map("institutionArticles")
+}
