@@ -12,7 +12,7 @@ export async function donorSignUp(req: Request, res: Response) {
 
 export async function donorSignIn(req: Request, res: Response) {
     const data: DonorData = req.body;
-    const token: string = await authService.login(data);
+    const donorData = await authService.login(data);
 
-    return res.status(201).send({ token });
+    return res.status(201).send(donorData);
 };

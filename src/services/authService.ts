@@ -23,8 +23,12 @@ async function login(data: DonorData) {
     if (!passwordValidation) throw { type: "unauthorized" };
 
     const token = await createToken(user);
-    
-    return token;
+    const donorData = {
+        name: user.name,
+        email: user.email,
+        token
+    };
+    return donorData;
 }
 
 const authService = {
