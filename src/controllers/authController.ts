@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { CreateDonorData } from "../utils/types.js";
+import { CreateDonorData, DonorData } from "../utils/types.js";
 import authService from "../services/authService.js";
 
 export async function donorSignUp(req: Request, res: Response) {
@@ -10,3 +10,9 @@ export async function donorSignUp(req: Request, res: Response) {
     res.sendStatus(201);
 };
 
+export async function donorSignIn(req: Request, res: Response) {
+    const data: DonorData = req.body;
+    const token: string = await authService.login(data);
+
+    return res.status(201).send({ token });
+};
