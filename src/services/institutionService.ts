@@ -5,7 +5,7 @@ export async function getInstitutionsList() {
     return data;
 }
 
-export async function getInstitutionsByCategory (categoryId:number) {
+export async function getInstitutionsByCategory(categoryId: number) {
     const data = await institutionsRepository.getInstitutionsByCategory(categoryId);
     const dataWithoutCreatedAt = excludeCreatedAt(data);
     return dataWithoutCreatedAt;

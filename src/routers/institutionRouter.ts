@@ -8,8 +8,8 @@ import {
 const institutionRouter = Router();
 
 // institutionRouter.post("/institutions");
-institutionRouter.get("/institutions", getInstitutionsList);
-institutionRouter.get("/institutions/:categoryId", getInstitutionsByCategory);
+institutionRouter.get("/", getInstitutionsList);
+institutionRouter.get("/:categoryId", getInstitutionsByCategory);
 
 export default institutionRouter;
 
