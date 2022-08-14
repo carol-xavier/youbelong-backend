@@ -1,11 +1,15 @@
 import { Request, Response } from "express";
 import donorInstitutionsService from "../services/donorInstitutionsService.js";
 
-export async function updateDonorInstitutions(req: Request, res: Response) {
-    const { institutionId } = req.body;
-    const orgId = parseInt(institutionId);
-    const { donorId } = res.locals;
-    await donorInstitutionsService.updateDonorInstitutions(orgId, donorId);
+export function updateDonorInstitutions(params:string) {
 
-    res.sendStatus(201);
-};
+    return async function(req: Request, res: Response) {
+        const { institutionId } = req.body;
+        const orgId = parseInt(institutionId);
+        const { donorId } = res.locals;
+        await donorInstitutionsService.updateDonorInstitutions(params, orgId, donorId);
+    
+        res.sendStatus(201);
+    }
+}
+

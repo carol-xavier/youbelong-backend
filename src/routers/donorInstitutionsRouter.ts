@@ -4,6 +4,7 @@ import { updateDonorInstitutions } from "../controllers/donorInstitutionsControl
 
 const donorInstitutionsRouter = Router();
 
-donorInstitutionsRouter.put("/donor", verifyToken, updateDonorInstitutions);
+donorInstitutionsRouter.post("/donor", verifyToken, updateDonorInstitutions('post'));
+donorInstitutionsRouter.delete("/donor", verifyToken, updateDonorInstitutions('delete'));
 
 export default donorInstitutionsRouter;

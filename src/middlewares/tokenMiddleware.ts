@@ -17,11 +17,11 @@ export async function verifyToken(req: Request, res: Response, next: NextFunctio
     const secretKey = process.env.JWT_SECRET;
     const token = authorization?.replace("Bearer", "").trim();
 
-    const tokenTest = await jwt.verify(token, secretKey, (err) => {
+    await jwt.verify(token, secretKey, (err, session) => {
         if(err) return res.status(401).send('Invalid token');
+        const { donorId } = session;
+        res.locals.donorId = donorId;
     });
-    const { donorId } = tokenTest.session;
-    res.locals.donorId = donorId;
 
     next();
 };
