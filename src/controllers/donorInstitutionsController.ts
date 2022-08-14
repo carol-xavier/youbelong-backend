@@ -7,6 +7,7 @@ export function updateDonorInstitutions(params:string) {
         const { institutionId } = req.body;
         const orgId = parseInt(institutionId);
         const { donorId } = res.locals;
+        console.log("CONTROLER-line10", donorId);
         await donorInstitutionsService.updateDonorInstitutions(params, orgId, donorId);
     
         res.sendStatus(201);
