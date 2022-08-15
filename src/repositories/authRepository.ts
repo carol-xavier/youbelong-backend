@@ -9,13 +9,6 @@ async function findDonorByEmail(email: string) {
     });
 };
 
-async function findDonorInstitutions(donorId: number) {
-    return prisma.donorsInstitutions.findMany({
-        where: { donorId },
-        select: { institutionId: true}
-    })
-};
-
 async function insertDonor(donor: CreateDonorData) {
     return prisma.donor.create({
         data: donor,
@@ -24,7 +17,6 @@ async function insertDonor(donor: CreateDonorData) {
 
 const authRepository = {
     findDonorByEmail,
-    findDonorInstitutions,
     insertDonor
 }
 

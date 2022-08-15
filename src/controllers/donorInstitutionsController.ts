@@ -12,5 +12,12 @@ export function updateDonorInstitutions(params:string) {
     
         res.sendStatus(201);
     }
-}
+};
+
+export async function getDonorInstitutionList(req: Request, res: Response) {
+    const { donorId } = res.locals;
+    const data = await donorInstitutionsService.getDonorInstitutionList(donorId);
+
+    res.status(200).send(data);
+};
 

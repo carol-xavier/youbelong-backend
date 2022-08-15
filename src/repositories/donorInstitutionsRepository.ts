@@ -19,8 +19,18 @@ async function updateById(params:string, institutionId: number, donorId: number)
             }
         })
     };
-}
+};
 
-const donorInstitutionsRepository = { updateById };
+async function findDonorInstitutions(donorId: number) {
+    return prisma.donorsInstitutions.findMany({
+        where: { donorId },
+        select: { institutionId: true}
+    })
+};
+
+const donorInstitutionsRepository = { 
+    updateById,
+    findDonorInstitutions
+};
 
 export default donorInstitutionsRepository;

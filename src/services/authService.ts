@@ -23,14 +23,10 @@ async function login(data: DonorData) {
     const passwordValidation = bcrypt.compareSync(data.password, user.password);
     if (!passwordValidation) throw { type: "unauthorized" };
 
-    const institutions = await authRepository.findDonorInstitutions(user.id);
-    const savedInstitutions = handleInstitutionsArrray(institutions);
     const token = await createToken(user);
-    
     const donorData = {
         name: user.name,
         email: user.email,
-        savedInstitutions,
         token
     };
     return donorData;
@@ -43,7 +39,3 @@ const authService = {
 }
 
 export default authService;
-
-function handleInstitutionsArrray(institutions) {
-    return institutions.map((obj) => obj.institutionId);
-}
