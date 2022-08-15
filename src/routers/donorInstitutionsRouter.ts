@@ -1,14 +1,15 @@
 import { Router } from "express";
 import {verifyToken} from "./../middlewares/tokenMiddleware.js";
 import { 
-    updateDonorInstitutions,
+    addDonorInstitutions,
+    deleteDonorInstitutions,
     getDonorInstitutionList
 } from "../controllers/donorInstitutionsController.js";
 
 const donorInstitutionsRouter = Router();
 
-donorInstitutionsRouter.post("/", verifyToken, updateDonorInstitutions('post'));
-donorInstitutionsRouter.delete("/", verifyToken, updateDonorInstitutions('delete'));
+donorInstitutionsRouter.post("/", verifyToken, addDonorInstitutions);
+donorInstitutionsRouter.delete("/:institutionId", verifyToken, deleteDonorInstitutions);
 donorInstitutionsRouter.get("/", verifyToken, getDonorInstitutionList)
 
 export default donorInstitutionsRouter;

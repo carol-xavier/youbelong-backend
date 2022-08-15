@@ -1,23 +1,27 @@
 import donorInstitutionsRepository from "../repositories/donorInstitutionsRepository.js";
 
-async function updateDonorInstitutions(params: string, institutionId: number, donorId: number) {
-    return await donorInstitutionsRepository.updateById(params, institutionId, donorId);
+async function addDonorInstitutions(institutionId: number, donorId: number) {
+    return await donorInstitutionsRepository.addById(institutionId, donorId);
 }
 
-async function getDonorInstitutionList(donorId:number) {
-    const institutions = await donorInstitutionsRepository.findDonorInstitutions(donorId);
-    const savedInstitutions = handleInstitutionsArrray(institutions);
+async function deleteDonorInstitutions(institutionId: number, donorId: number) {
+    return await donorInstitutionsRepository.deleteById(institutionId, donorId);
+}
 
-    return savedInstitutions;
+async function getDonorInstitutionList(donorId: number) {
+    const institutions = await donorInstitutionsRepository.findDonorInstitutions(donorId);
+    const institutionList = getArray(institutions);
+    return institutionList;
 }
 
 const donorInstitutionsService = {
-    updateDonorInstitutions,
+    addDonorInstitutions,
+    deleteDonorInstitutions,
     getDonorInstitutionList
 };
 
 export default donorInstitutionsService;
 
-function handleInstitutionsArrray(institutions) {
-    return institutions.map((obj) => obj.institutionId);
+function getArray(data) {
+    return data.map((obj) => { return obj.institution })
 }
