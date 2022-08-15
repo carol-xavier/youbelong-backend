@@ -14,8 +14,8 @@ async function main() {
 
   await prisma.$queryRaw`INSERT INTO donors ("name", "email", "password") VALUES ('Teste', 'teste@gmail.com', '12345')`;
   
-  await prisma.$queryRaw`INSERT INTO institutions ("name", "description", "categoryId") VALUES ('ABC', 'testetestetestetestetestetestetesteteste', 2)`;
-  await prisma.$queryRaw`INSERT INTO institutions ("name", "description", "categoryId") VALUES ('CABiologia', 'testetestetesteteste', 1)`;
+  await prisma.$queryRaw`INSERT INTO institutions ("name", "description", "categoryId", "contact") VALUES ('ABC', 'testetestetestetestetestetestetesteteste', 2, '9839811821')`;
+  await prisma.$queryRaw`INSERT INTO institutions ("name", "description", "categoryId", "contact") VALUES ('CABiologia', 'testetestetesteteste', 1, '6724807117')`;
 
   await prisma.$queryRaw`INSERT INTO "donorsInstitutions" ("donorId", "institutionId") VALUES (1, 1)`;
   await prisma.$queryRaw`INSERT INTO "donorsInstitutions" ("donorId", "institutionId") VALUES (1, 2)`;

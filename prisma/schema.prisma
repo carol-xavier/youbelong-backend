@@ -29,6 +29,7 @@ model Institution {
   mission             String?
   picture             String?
   video               String?
+  contact             String                @unique
   categoryId          Int
   createdAt           DateTime              @default(now())
   category            InstitutionCategory   @relation(fields: [categoryId], references: [id])
