@@ -11,7 +11,7 @@ async function findDonorByEmail(email: string) {
 
 async function insertDonor(donor: CreateDonorData) {
     return prisma.donor.create({
-        data: donor,
+        data: donor
     });
 };
 

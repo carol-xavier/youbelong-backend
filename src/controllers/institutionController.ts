@@ -1,5 +1,14 @@
 import { Request, Response } from "express";
+import { CreateInstitutionData } from "../utils/types.js";
 import institutionsService from "../services/institutionService.js";
+
+
+export async function postNewInstitution(req: Request, res: Response) {
+    const institution: CreateInstitutionData = req.body;
+    await institutionsService.postNewInstitution(institution);
+
+    res.sendStatus(201);
+};
 
 export async function getInstitutionsList(req: Request, res: Response) {
     const data = await institutionsService.getInstitutionsList();
