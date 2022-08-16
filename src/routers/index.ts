@@ -7,7 +7,7 @@ import donorInstitutionsRouter from "./donorInstitutionsRouter.js";
 const router = Router();
 
 router.use(authRouter);
-router.use(articleRouter);
+router.use("/articles", articleRouter);
 router.use("/institutions", institutionRouter);
 router.use("/donor", donorInstitutionsRouter);
 

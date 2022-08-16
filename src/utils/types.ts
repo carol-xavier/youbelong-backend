@@ -5,4 +5,9 @@ export type CreateDonorData = Omit<Donor, "id" | "createdAt">;
 
 export type DonorData = Omit<Donor, "id" | "name" | "createdAt">;
 
-export type CreateInstitutionData  = Omit<Institution, "id" | "createdAt">
+export type CreateInstitutionData = Omit<Institution, "id" | "createdAt">;
+
+export type CreateInstitutionArticlesData = {
+    institutionId: number,
+    articleIds: number[]
+};
