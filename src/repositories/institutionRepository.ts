@@ -1,18 +1,6 @@
 import prisma from '../config/database.js';
-import { Institution } from '@prisma/client';
 import { CreateInstitutionData } from "../utils/types.js";
 
-// export async function postNewInstitution(institution: CreateInstitutionData) {
-//         const promise = await prisma.institution.create({
-//             data: institution
-//         }).then((successResponse) => {
-//             if (successResponse) {
-//                 return promise;
-//               } else {
-//                 throw { type: "conflict" };
-//               }
-//         });
-// };
 export async function postNewInstitution(institution: CreateInstitutionData) {
     try {
         const data = await prisma.institution.create({
