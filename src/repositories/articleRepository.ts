@@ -9,7 +9,7 @@ export async function getInstitutionsByArticleId(articleId:number) {
     return data;
 }
 
-export async function postInstitutionArticle(institutionId:number, articleId:number) {
+export async function postInstitutionArticle(articleId:number, institutionId:number) {
     try {
         const promise = await prisma.institutionArticles.create({
             data: {
