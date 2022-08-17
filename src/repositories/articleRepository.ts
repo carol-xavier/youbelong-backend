@@ -9,8 +9,23 @@ export async function getInstitutionsByArticleId(articleId:number) {
     return data;
 }
 
+export async function postInstitutionArticle(articleId:number, institutionId:number) {
+    try {
+        const promise = await prisma.institutionArticles.create({
+            data: {
+                institutionId,
+                articleId
+            }
+        });
+        return promise;
+    } catch (error) {
+        throw { type: "conflict", message: error };
+    }
+}
+
 const articleRepository = {
-    getInstitutionsByArticleId
+    getInstitutionsByArticleId,
+    postInstitutionArticle
 };
 
 export default articleRepository;

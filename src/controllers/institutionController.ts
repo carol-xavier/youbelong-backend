@@ -5,9 +5,9 @@ import institutionsService from "../services/institutionService.js";
 
 export async function postNewInstitution(req: Request, res: Response) {
     const institution: CreateInstitutionData = req.body;
-    await institutionsService.postNewInstitution(institution);
-
-    res.sendStatus(201);
+    const institutionCreated = await institutionsService.postNewInstitution(institution);
+    const {id} = institutionCreated;
+    res.status(201).send({institutionId: id});
 };
 
 export async function getInstitutionsList(req: Request, res: Response) {
