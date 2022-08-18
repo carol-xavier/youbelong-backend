@@ -3,7 +3,8 @@ import { CreateInstitutionArticlesData } from "../utils/types.js";
 
 export async function getInstitutionsByArticles(articleId: number) {
     const data = await articleRepository.getInstitutionsByArticleId(articleId);
-    const dataWithoutCreatedAt = excludeCreatedAt(data);
+    const dataExtracted = extractData(data);
+    const dataWithoutCreatedAt = excludeCreatedAt(dataExtracted);
     return dataWithoutCreatedAt;
 };
 
@@ -23,6 +24,10 @@ const articleService = {
 };
 
 export default articleService;
+
+function extractData(data) {
+    return data.map((obj) =>  obj.institution);
+};
 
 function excludeCreatedAt(data) {
     return data.map((obj) => {
